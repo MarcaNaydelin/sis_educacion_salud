@@ -1,0 +1,62 @@
+:host ::ng-deep {
+  .ng-select {
+    .ng-select-container {
+      background-color: #ffffff !important;
+    }
+
+    .ng-dropdown-panel {
+      background-color: #ffffff !important;
+
+      .ng-dropdown-panel-items {
+        background-color: #ffffff !important;
+
+        .ng-option {
+          background-color: #ffffff !important;
+
+          &:hover {
+            background-color: #f8f9fa !important;
+          }
+
+          &.ng-option-selected {
+            background-color: #e9ecef !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Mantén tus otros estilos existentes debajo de esto */
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.image-preview-item {
+  position: relative;
+
+  .remove-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+
+    &:hover {
+      background: #c82333;
+    }
+  }
+}

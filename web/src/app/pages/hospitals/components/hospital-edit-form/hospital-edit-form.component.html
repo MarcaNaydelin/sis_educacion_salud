@@ -1,0 +1,148 @@
+<div class="modal-header">
+  <h5 class="modal-title">Editar datos del Hospital</h5>
+  <button type="button" class="btn-close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form.FormGroup" (ngSubmit)="formSubmit()">
+    <div class="row">
+      <!-- Fila 1 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Nombre del hospital"
+        [ngClass]="{'is-invalid': form.submitted && Form.name.errors, 'is-valid': form.submitted && !Form.name.errors}"/>
+        <div *ngIf="form.submitted && Form.name.errors" class="invalid-feedback">
+          <span *ngIf="Form.name.errors.required">El nombre es obligatorio.</span>
+          <span *ngIf="Form.name.errors.minlength">El nombre debe tener al menos 3 caracteres.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Director</label>
+        <input type="text" class="form-control" formControlName="director" placeholder="Nombre del director"
+        [ngClass]="{'is-invalid': form.submitted && Form.director.errors, 'is-valid': form.submitted && !Form.director.errors}"/>
+        <div *ngIf="form.submitted && Form.director.errors" class="invalid-feedback">
+          <span *ngIf="Form.director.errors.required">El nombre del directo obligatorio.</span>
+          <span *ngIf="Form.director.errors.minlength">El nombre debe tener al menos 3 caracteres.</span>
+        </div>
+      </div>
+      <!-- Fila 2-->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nivel</label>
+        <select class="form-select" formControlName="level"
+        [ngClass]="{'is-invalid': form.submitted && Form.level.errors, 'is-valid': form.submitted && !Form.level.errors}">
+          <option value="">Seleccione un nivel</option>
+          <option value="Primer nivel">Primer Nivel</option>
+          <option value="Segundo nivel">Segundo Nivel</option>
+        </select>
+        <div *ngIf="form.submitted && Form.level.errors" class="invalid-feedback">
+          <span *ngIf="Form.level.errors.required">Debe seleccionar un nivel.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Turno</label>
+        <select class="form-select" formControlName="shifts"
+        [ngClass]="{'is-invalid': form.submitted && Form.shifts.errors, 'is-valid': form.submitted && !Form.shifts.errors}">
+          <option value="">Seleccione un turno</option>
+          <option value="24_horas">24 Horas</option>
+          <option value="Turno mañana">Turno Mañana</option>
+          <option value="Turno tarde">Turno Tarde</option>
+          <option value="Turno noche">Turno Noche</option>
+        </select>
+        <div *ngIf="form.submitted && Form.shifts.errors" class="invalid-feedback">
+          <span *ngIf="Form.shifts.errors.required">Debe seleccionar un turno.</span>
+        </div>
+      </div>
+      <!-- Fila 3 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Zona</label>
+        <select class="form-select" formControlName="zone"
+        [ngClass]="{'is-invalid': form.submitted && Form.zone.errors, 'is-valid': form.submitted && !Form.zone.errors}">
+          <option value="">Seleccione una zona</option>
+          <option value="zona norte">Zona Norte</option>
+          <option value="zona sur">Zona Sur</option>
+        </select>
+        <div *ngIf="form.submitted && Form.zone.errors" class="invalid-feedback">
+          <span *ngIf="Form.zone.errors.required">Debe seleccionar una zona.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Distrito</label>
+        <input type="text" class="form-control" formControlName="district" placeholder="Distrito de la zona"
+        [ngClass]="{'is-invalid': form.submitted && Form.district.errors, 'is-valid': form.submitted && !Form.district.errors}"/>
+        <div *ngIf="form.submitted && Form.district.errors" class="invalid-feedback">
+          <span *ngIf="Form.district.errors.required">El distrito es obligatorio.</span>
+        </div>
+      </div>
+      <!-- Fila 4 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control" formControlName="address" placeholder="Dirección del hospital"
+        [ngClass]="{'is-invalid': form.submitted && Form.address.errors, 'is-valid': form.submitted && !Form.address.errors}"/>
+        <div *ngIf="form.submitted && Form.address.errors" class="invalid-feedback">
+          <span *ngIf="Form.address.errors.required">La direccion es obligatorio.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Estado:</label>
+        <div>
+          <ui-switch formControlName="status" color="##343a40" [checked]="true" uncheckedLabel="Inactivo"
+            checkedLabel="Activo" size="small"></ui-switch>
+        </div>
+      </div>
+      <!-- Fila 5 -->
+      <div class="col-md-6 mb-3">
+        <div class="d-flex justify-content-between">
+          <label class="form-label">Teléfonos</label>
+          <button type="button" class="btn btn-sm btn-primary btn-rounded mb-2 me-2" (click)="addPhoneNumber()">
+            <i class="mdi mdi-plus mr-1"></i>
+          </button>
+        </div>
+        <div formArrayName="phone_numbers">
+          <div *ngFor="let phoneControl of phonesNumbersControls; let i = index"
+            class="phone-number-group d-flex flex-grow-1 p-1">
+            <input type="text" class="form-control" [formControlName]="i" pattern="[0-9]*" maxlength="8"
+              placeholder="Numero de telefono"
+              [ngClass]="{'is-invalid': form.submitted && phoneControl.errors}"/>
+            <button type="button" class="btn btn-sm btn-danger" (click)="removePhoneNumber(i)">
+              <i class="mdi mdi-trash-can mr-1"></i>
+            </button>
+            <div *ngIf="form.submitted && phoneControl.errors" class="invalid-feedback">
+              <span *ngIf="phoneControl.errors?.required">EDebe agregar al menos un teléfono.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="mb-3">
+          <label class="form-label">Servicios</label>
+          <ng-select [items]="selectValue" [multiple]="true" formControlName="services" bindLabel="name" bindValue="id"
+            [searchable]="false" [clearable]="true" [dropdownPosition]="'below'" [(ngModel)]="selectedServices"
+            placeholder="Seleccione los servicios del hospital" [compareWith]="compareFn"
+            (open)="setTemplateSelectService()"></ng-select>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Sección de Mapa -->
+    <div class="col-12 mt-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Ubicación del Hospital</h4>
+          <div class="map-container" style="height: 400px; width: 100%;" leaflet [leafletOptions]="options"
+            [leafletLayers]="markers" (leafletClick)="addMarker($event)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-light me-2" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-success" [disabled]="form.submitting">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

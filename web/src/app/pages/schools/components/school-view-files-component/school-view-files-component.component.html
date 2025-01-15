@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h5 class="modal-title">Imagenes del Colegio</h5>
+  <button type="button" class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+<div class="modal-body">
+  <carousel [interval]="0">
+    <slide *ngFor="let image of carousel_images">
+      <div class="row">
+        <div class="col-6">
+          <h5>Estado: </h5>
+          <span *ngIf="image.status; else dangerBadge" class="badge bg-success">Activo</span>
+          <ng-template #dangerBadge>
+            <span class="badge bg-danger">Inactivo</span>
+          </ng-template>
+        </div>
+        <div class="col-12">
+          <img class="img-fluid" [src]="image.path" alt="image-text">
+        </div>
+      </div>
+    </slide>
+  </carousel>
+  <br>
+  <div class="d-flex flex-grow-1">
+    <div class="p-2" *ngFor="let image of carousel_images; let i = index ">
+      <button href="javascript:void(0);" class="btn btn-sm btn-warning" (click)="deleteImage(image)">
+        <i class="mdi mdi-toggle-switch font-size-18">
+          {{i + 1}}
+        </i>
+      </button>
+    </div>
+  </div>
+</div>

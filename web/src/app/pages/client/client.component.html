@@ -1,0 +1,302 @@
+<nav class="navbar navbar-expand-lg navigation fixed-top sticky" (window:scroll)="windowScroll()" id="navbar">
+  <div class="container">
+    <a class="navbar-logo" routerLink="/">
+      <img src="assets/images/firma-removebg-preview.png" alt="" height="32" class="logo logo-dark">
+      <img src="assets/images/Firma-GAMC y Cocha blanco.png" alt="" height="32" class="logo logo-light">
+    </a>
+
+    <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item" data-toggle="collapse"
+      data-target="#topnav-menu-content" (click)="toggleMenu()">
+      <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topnav-menu-content">
+      <ul class="navbar-nav ms-auto" id="topnav-menu">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'Inicio'"
+            [ngClass]="{'active':currentSection === 'Inicio'}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'SobreNosotros'"
+            [ngClass]="{'active':currentSection === 'SobreNosotros'}">Sobre nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'ViewHospitalSchool'" [ngxScrollToOffset]="5"
+            [ngClass]="{'active':currentSection === 'ViewHospitalSchool'}">Hospitales y Escuelas</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div appScrollspy [spiedTags]="['SECTION']" (sectionChange)="onSectionChange($event)">
+  <!-- hero section start -->
+  <section class="section hero-section bg-ico-hospital" id="Inicio">
+    <div class="bg-overlay"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5">
+          <div class="text-white-50">
+            <h1 class="text-white fw-semibold mb-3 hero-title">Gobierno Autonomo Municipal de Cochabamba</h1>
+            <p class="font-size-14">Cochabamba somos progreso</p>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- hero section end -->
+
+  <!-- currency price section start -->
+  <section class="section bg-white p-0" id="SobreNosotros">
+    <div class="container">
+      <div class="currency-price">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar-xs">
+                      <span class="avatar-title rounded-circle bg-warning-subtle text-warning font-size-18">
+                        <i class="mdi mdi-hospital-building"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <p class="text-muted">Hospitales</p>
+                    <h5>{{total_hospitals}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar-xs">
+                      <span class="avatar-title rounded-circle bg-primary-subtle text-primary font-size-18">
+                        <i class="mdi mdi-school"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <p class="text-muted">Escuelas</p>
+                    <h5>{{total_schools}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar-xs">
+                      <span class="avatar-title rounded-circle bg-info-subtle text-info font-size-18">
+                        <i class="mdi mdi-map-search"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <p class="text-muted">Mapas</p>
+                    <div class="d-flex flex-column align-items-center">
+                      <a href="client/hospital-map" class="btn btn-primary m-1 btn-same-size" style="width: 100%; max-width: 220px;">
+                        Ir al mapa de Hospitales</a>
+                      <a href="client/school-map" class="btn btn-primary m-1 btn-same-size" style="width: 100%; max-width: 220px;">
+                        Ir al mapa de Escuelas</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- currency price section end -->
+
+
+  <!-- SobreNosotros section start -->
+  <section class="section pt-4 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center mb-5">
+            <div class="small-title">Sobre nosotros</div>
+            <h4>Que es esta pagina?</h4>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-lg-5">
+
+          <div class="text-muted">
+            <h4>Cochabamba Escuelas y Hospitales</h4>
+            <p>
+              Esta página está diseñada para mostrar información sobre los hospitales y colegios disponibles en la
+              ciudad de Cochabamba. Proporciona una lista organizada y detallada que permite a los usuarios explorar las
+              opciones disponibles, acceder a datos importantes como ubicación, servicios, y contactos, facilitando así
+              la búsqueda y elección de estas instituciones.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-6 ms-auto">
+          <div class="mt-4 mt-lg-0">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card border mt-lg-4">
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <i class="mdi mdi-school-outline h2 text-success"></i>
+                    </div>
+                    <h5>Escuelas</h5>
+                    <p class="text-muted mb-0">Escuelas disponibles</p>
+                  </div>
+                  <div class="card-footer bg-transparent border-top text-center">
+                    <a href="client/school-map" class="text-primary">Ver en el mapa</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 ">
+                <div class="card border mt-lg-4">
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <i class="mdi mdi-hospital-box-outline h2 text-success"></i>
+                    </div>
+                    <h5>Hospitales</h5>
+                    <p class="text-muted mb-0">Hospitales disponibles</p>
+
+                  </div>
+                  <div class="card-footer bg-transparent border-top text-center">
+                    <a href="client/hospital-map" class="text-primary">Ver en el mapa</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- SobreNosotros section end -->
+
+  <!-- ViewHospitalSchool start -->
+  <section class="section" id="ViewHospitalSchool">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center mb-5">
+            <div class="small-title">Hospitales y Escuelas</div>
+            <h4>Cochabamba somos innovacion</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+
+      <div class="row align-items-center pt-4">
+        <div class="col-md-6 col-sm-8">
+          <div>
+            <img src="assets/images/salud/Banner_Salud.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+        </div>
+        <div class="col-md-5 ms-auto">
+          <div class="mt-4 mt-md-auto">
+            <div class="d-flex align-items-center mb-2">
+              <div class="ViewHospitalSchool-number fw-semibold display-4 me-3">01</div>
+              <h4 class="mb-0">Hospitales</h4>
+            </div>
+            <p class="text-muted">
+              En Cochabamba, los hospitales son instituciones clave para la atención médica de la población, ofreciendo
+              servicios de salud especializados y de emergencia. Están distribuidos en diferentes zonas de la ciudad,
+              atendiendo tanto a pacientes locales como de áreas rurales cercanas.
+            </p>
+            <div class="text-muted mt-4">
+              <p class="mb-2"><i class="mdi mdi-circle-medium text-success me-1"></i>Diversidad de servicios</p>
+              <p><i class="mdi mdi-circle-medium text-success me-1"></i>Cobertura y accesso</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+
+      <div class="row align-items-center mt-5 pt-md-5">
+        <div class="col-md-5">
+          <div class="mt-4 mt-md-0">
+            <div class="d-flex align-items-center mb-2">
+              <div class="ViewHospitalSchool-number fw-semibold display-4 me-3">02</div>
+              <h4 class="mb-0">Escuelas</h4>
+            </div>
+            <p class="text-muted">
+              En Cochabamba, los colegios desempeñan un papel fundamental en la educación y formación de niños y
+              jóvenes. Ofrecen niveles educativos desde inicial hasta secundaria, con opciones públicas, tecnicos y de
+              convenio.
+            </p>
+            <div class="text-muted mt-4">
+              <p class="mb-2"><i class="mdi mdi-circle-medium text-success me-1"></i>Diverisdad educativa</p>
+              <p><i class="mdi mdi-circle-medium text-success me-1"></i>Cobertura en la ciudad</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6  col-sm-8 ms-md-auto">
+          <div class="mt-4 me-md-0">
+            <img src="assets/images/educacion/Banner_Educacion.png" alt="" class="img-fluid mx-auto d-block">
+          </div>
+        </div>
+
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- ViewHospitalSchool end -->
+
+
+  <!-- Footer start -->
+  <footer class="landing-footer">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-6 col-sm-6">
+          <div class="mb-4 mb-lg-0">
+            <h5 class="mb-3 footer-list-title">Pagina</h5>
+            <ul class="list-unstyled footer-list-menu">
+              <li>
+                <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'Inicio'"
+                  [ngClass]="{'active':currentSection === 'Inicio'}">Inicio</a>
+              </li>
+              <li>
+                <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'SobreNosotros'"
+                  [ngClass]="{'active':currentSection === 'SobreNosotros'}">Sobre nosotros</a>
+              </li>
+              <li>
+                <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'ViewHospitalSchool'"
+                  [ngxScrollToOffset]="5" [ngClass]="{'active':currentSection === 'ViewHospitalSchool'}">Hospitales y
+                  Escuelas</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 p-2">
+          <img class="mb-2" src="assets/images/Escudo GAMC.png" alt="" height="100">
+          <p class="mb-2">{{year}} © Gobierno Autonomo Municipal de Cochabamba</p>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </footer>
+  <!-- Footer end -->
+
+</div>

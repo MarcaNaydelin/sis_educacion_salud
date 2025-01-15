@@ -1,0 +1,119 @@
+<app-loader></app-loader>
+
+<div class="container-fluid">
+  <app-page-title title="Hospitales" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Tabla de Hospitales Registrados</h4>
+          <p class="card-sub-title">Hospitales del sistema.</p>
+          <div class="row mb-md-2">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="services-table_length">
+                <label class="d-inline-flex align-items-center">Mostrar
+                  <select name="services-table_length" aria-controls="services-table" name="pageSize"
+                    class="form-control form-control-sm mx-2" [ngModel]="pageSize$.value"
+                    (ngModelChange)="pageSize$.next($event)">
+                    <option [ngValue]="10" selected>10</option>
+                    <option [ngValue]="20">20</option>
+                    <option [ngValue]="50">50</option>
+                  </select>registros</label>
+              </div>
+            </div>
+            <!-- Busqueda y añadir nuevo hospital -->
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <div class="search-box me-2 mb-2 d-inline-block">
+                  <div class="position-relative">
+                    <input type="text" class="form-control" autocomplete="off" id="searchTableList"
+                      placeholder="Buscar..." (input)="searchBy$.next($event.target.value)" />
+                    <i class="bx bx-search-alt search-icon"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="text-sm-end">
+                  <button type="button" class="btn btn-success btn-rounded mb-2 me-2"
+                    *ngIf="'create' | able: 'hospitals'" (click)="openHospitalFormRegister()">
+                    <i class="mdi mdi-plus mr-1"></i> Añadir Hospital
+                  </button>
+                </div>
+              </div>
+              <!-- end col-->
+            </div>
+
+            <!-- Tabla de hospitales -->
+            <div class="table-responsive" *ngIf="hospitalList$ | async as hospitalList">
+              <table id="basic-datatable"
+                class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline">
+                <thead>
+                  <tr>
+                    <th sortable="name">Nombre</th>
+                    <th sortable="director">Director</th>
+                    <th sortable="phones">Teléfonos</th>
+                    <th sortable="level">Nivel</th>
+                    <th sortable="shift">Turno</th>
+                    <th sortable="address">Dirección</th>
+                    <th sortable="zone">Zona</th>
+                    <th sortable="district">Distrito</th>
+                    <th sortable="status">Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let hospital of hospitalList.data; let i = index">
+                    <td>{{ hospital.name }}</td>
+                    <td>{{ hospital.director }}</td>
+                    <td>{{ hospital.phone_numbers }}</td>
+                    <td>{{ hospital.level }}</td>
+                    <td>{{ hospital.shifts }}</td>
+                    <td>{{ hospital.address }}</td>
+                    <td>{{ hospital.zone }}</td>
+                    <td>{{ hospital.district }}</td>
+                    <td>
+                      <span *ngIf="hospital.status; else dangerBadge" class="badge bg-success">Activo</span>
+                      <ng-template #dangerBadge>
+                        <span class="badge bg-danger">Inactivo</span>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div class="d-flex gap-3">
+                        <a href="javascript:void(0);" class="text-success" *ngIf="'edit' | able: 'hospitals'"
+                          (click)="openHospitalFormUpdate(hospital.id)"><i class="mdi mdi-pencil font-size-18"></i></a>
+                        <a href="javascript:void(0);" class="text-danger" *ngIf="'delete' | able: 'hospitals'"
+                          (click)="openHospitalDeleteConfirm(hospital.id)"><i
+                            class="mdi mdi-delete font-size-18"></i></a>
+                        <a href="javascript:void(0);" class="text-info" *ngIf="'image.create' | able: 'hospitals'"
+                          (click)="openHospitalFormRegisterFiles(hospital.id)"><i
+                            class="mdi mdi-image-plus font-size-18"></i></a>
+                        <a href="javascript:void(0);" class="text-info" *ngIf="'image.delete' | able: 'hospitals'"
+                          (click)="openHospitalViewFiles(hospital.id)"><i
+                            class="mdi mdi-image-multiple font-size-18"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row justify-content-md-between align-items-md-center mt-2">
+              <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info mb-2" id="table_info" role="status" aria-live="polite">
+                  Total de registros {{ totalItems }}
+                </div>
+              </div>
+              <!-- Pagination -->
+              <div class="col-sm-12 col-md-5">
+                <div class="text-md-right float-md-end pagination-rounded">
+                  <pagination [previousText]="'Anterior'" [nextText]="'Siguiente'" [totalItems]="totalItems"
+                    [ngModel]="pageNumber$.value" [itemsPerPage]="pageSize$.value"
+                    (pageChanged)="pageNumber$.next($event.page)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
