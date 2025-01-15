@@ -1,0 +1,133 @@
+<app-loader></app-loader>
+<div class="container-fluid">
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Cuadro de mando sistema de escuelas y hospitales</h4>
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <ng-container>
+              <li class="breadcrumb-item"><a href="javascript: void(0);">Cuadro de mando</a>
+              </li>
+              <li class="breadcrumb-item active">Cuadro de mando
+              </li>
+            </ng-container>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards de estadísticas -->
+  <div class="row mb-4">
+    <div class="col-lg-4">
+      <div class="card mini-stats-wid h-100">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="me-3">
+              <p class="text-muted mb-2">Total Hospitales</p>
+              <h3 class="mb-0">{{total_hospitals}}</h3>
+            </div>
+            <div class="avatar-sm ms-auto">
+              <div class="avatar-title bg-primary text-white rounded-circle font-size-32 shadow">
+                <i class="bx bxs-hospital"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card blog-stats-wid h-100">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="me-3">
+              <p class="text-muted mb-2">Hospitales Activos</p>
+              <h3 class="mb-0">{{total_hospitals_active}}</h3>
+            </div>
+            <div class="avatar-sm ms-auto">
+              <div class="avatar-title bg-success text-white rounded-circle font-size-32 shadow">
+                <i class="bx bxs-check-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card blog-stats-wid h-100">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="me-3">
+              <p class="text-muted mb-2">Hospitales Inactivos</p>
+              <h3 class="mb-0">{{total_hospitals_inactive}}</h3>
+            </div>
+            <div class="avatar-sm ms-auto">
+              <div class="avatar-title bg-danger text-white rounded-circle font-size-32 shadow">
+                <i class="bx bxs-x-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Cards de Escuelas -->
+  <div class="row mb-4">
+    <div class="col-lg-4">
+      <div class="card mini-stats-wid h-100">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="me-3">
+              <p class="text-muted mb-2">Total Escuelas</p>
+              <h3 class="mb-0">{{total_schools}}</h3>
+            </div>
+            <div class="avatar-sm ms-auto">
+              <div class="avatar-title bg-primary text-white rounded-circle font-size-32 shadow">
+                <i class="bx bxs-hospital"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card blog-stats-wid h-100">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="me-3">
+              <p class="text-muted mb-2">Escuelas Activos</p>
+              <h3 class="mb-0">{{total_schools_active}}</h3>
+            </div>
+            <div class="avatar-sm ms-auto">
+              <div class="avatar-title bg-success text-white rounded-circle font-size-32 shadow">
+                <i class="bx bxs-check-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card blog-stats-wid h-100">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="me-3">
+              <p class="text-muted mb-2">Escuelas Inactivos</p>
+              <h3 class="mb-0">{{total_schools_inactive}}</h3>
+            </div>
+            <div class="avatar-sm ms-auto">
+              <div class="avatar-title bg-danger text-white rounded-circle font-size-32 shadow">
+                <i class="bx bxs-x-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- container-fluid -->

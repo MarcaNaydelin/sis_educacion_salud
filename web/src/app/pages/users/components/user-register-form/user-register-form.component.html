@@ -1,0 +1,71 @@
+<div class="modal-header">
+  <h5 class="modal-title">Añadir Usuario</h5>
+  <button type="button" class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form.FormGroup" (ngSubmit)="formSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Nombre Completo</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="Nombre Completo"
+      [ngClass]="{'is-invalid': form.submitted && Form.name.errors, 'is-valid': form.submitted && !Form.name.errors}"/>
+      <div *ngIf="form.submitted && Form.name.errors" class="invalid-feedback">
+        <span *ngIf="Form.name.errors.required">El nombre es obligatorio.</span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Correo Electronico</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Correo Electronico"
+      [ngClass]="{'is-invalid': form.submitted && Form.email.errors, 'is-valid': form.submitted && !Form.email.errors}"/>
+      <div *ngIf="form.submitted && Form.email.errors" class="invalid-feedback">
+        <span *ngIf="Form.email.errors?.['required']">El correo es obligatorio.</span>
+        <span *ngIf="Form.email.errors?.['pattern'] || Form.email.errors?.['email']">
+          Por favor ingrese un correo electrónico válido.
+        </span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Contraseña"
+      [ngClass]="{'is-invalid': form.submitted && Form.password.errors, 'is-valid': form.submitted && !Form.password.errors}"/>
+      <div *ngIf="form.submitted && Form.password.errors" class="invalid-feedback">
+        <span *ngIf="Form.password.errors?.['required']">La contraseña es obligatoria.</span>
+        <span *ngIf="Form.password.errors?.['minlength']">
+          La contraseña debe tener al menos 9 caracteres.
+        </span>
+      </div>
+
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirmar Contraseña</label>
+      <input type="password" class="form-control" formControlName="password_confirmation" placeholder="Confirmar Contraseña"/>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Estado:</label>
+      <ui-switch
+        formControlName="is_active"
+        color="##343a40"
+        [checked]="true"
+        uncheckedLabel="Inactivo"
+        checkedLabel="Activo"
+        size="small"
+        class="m-2"
+      ></ui-switch>
+    </div>
+    <div class="text-end">
+      <button
+        type="button"
+        class="btn btn-light me-2"
+        (click)="bsModalRef.hide()"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="form.submitting"
+      >
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

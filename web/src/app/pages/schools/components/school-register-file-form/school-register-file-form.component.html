@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h5 class="modal-title">Subir imagenes del Colegio</h5>
+  <button type="button" class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form.FormGroup" (ngSubmit)="formSubmit()">
+    <!-- Carga de Imágenes -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Imagenes del Colegio</div>
+            <p class="card-title-desc">Seleccione hasta 3 imágenes del Colegio.
+              Asegúrese de que los archivos sean de tipo imagen (JPG, PNG, etc.)</p>
+            <div>
+              <form>
+                <ngx-dropzone class="dropzone" (change)="onSelect($event)" [accept]="'image/*'">
+                  <ngx-dropzone-label class="dz-message needsclick">
+                    <div class="mb-3">
+                      <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+                    </div>
+                    <h5>Arrastre sus imágenes aquí o haga clic para subirlas.</h5>
+                  </ngx-dropzone-label>
+                </ngx-dropzone>
+                <div class="image-preview-container">
+                  <div *ngFor="let image of previewImages; let i = index" class="image-preview-item">
+                    <img [src]="image" alt="Imagen {{i + 1}}" class="img-thumbnail"
+                      style="width: 100px; height: 100px; object-fit: cover;">
+                    <button type="button" class="remove-image" (click)="onRemove(i)">×</button>
+                    <div class="form-switch mt-2">
+                      <label class="form-label">Estado:</label>
+                      <ui-switch [formControl]="(form.FormGroup.get('statuses')).controls[i]" color="#343a40"
+                        uncheckedLabel="Inactivo" checkedLabel="Activo" size="small"></ui-switch>
+                    </div>
+                  </div>
+                </div>
+                <!-- end dropzon-preview -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-light me-2" (click)="bsModalRef.hide()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-success" [disabled]="form.submitting">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

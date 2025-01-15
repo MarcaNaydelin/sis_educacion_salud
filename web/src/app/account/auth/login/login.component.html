@@ -1,0 +1,78 @@
+<!-- Add the gradient background and circles wrapper -->
+<div style="min-height: 100vh; background: linear-gradient(135deg, #009878 0%, #4FB9A8 70%); position: relative; overflow: hidden;">
+  <!-- Decorative circles -->
+  <div style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: rgba(249, 177, 84, 0.3); top: -50px; right: -50px;"></div>
+  <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: rgba(241, 135, 33, 0.2); bottom: 50px; left: -50px;"></div>
+  <div style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background: rgba(249, 177, 84, 0.2); top: 50%; right: 10%;"></div>
+  <div style="position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(241, 135, 33, 0.2); bottom: 10%; right: 20%;"></div>
+
+  <!-- Original form code starts here -->
+  <div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          <div class="card overflow-hidden">
+            <div style="background-color: #009878">
+              <div class="row">
+                <div class="col-7">
+                  <div class="p-4">
+                    <h5 style="color: white; font-weight: 600">Bienvenido de nuevo !</h5>
+                    <p style="color: rgba(255, 255, 255, 0.9)">Inicie sesión para continuar en el sistema de la GAMC.</p>
+                  </div>
+                </div>
+                <div class="col-5 align-self-end">
+                  <img src="../../../../assets/images/Escudo GAMC.png" alt="" class="img-fluid"
+                  style="background-color: transparent; border: none; filter: brightness(0) invert(1); max-height: 100px; margin: 1rem;">
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div>
+                <a routerLink="/">
+                  <div class="avatar-md profile-user-wid mb-4">
+                    <span class="avatar-title rounded-circle" style="background-color: #4FB9A8">
+                      <img src="../../../../assets/images/logo.svg" alt="" class="rounded-circle img-fluid" height="34"
+                      style="background-color: transparent; border: none; filter: brightness(0) invert(1);">
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-2">
+                <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</alert>
+                  <div class="mb-3">
+                    <label for="email" style="color: #009878; font-weight: 500">Correo Electrónico</label>
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email"
+                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">El correo electrónico es obligatorio</div>
+                      <div *ngIf="f.email.errors.email">Debe ser una dirección de correo válida</div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" style="color: #009878; font-weight: 500">Contraseña</label>
+                    <div class="input-group auth-pass-inputgroup">
+                      <input type="password" class="form-control" formControlName="password" placeholder="Enter password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" aria-label="Password"
+                        aria-describedby="password-addon">
+                      <button class="btn btn-light ms-0" type="button" id="password-addon"><i
+                          class="mdi mdi-eye-outline"></i></button>
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <span *ngIf="f.password.errors.required">La contraseña es obligatoria</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-3 d-grid">
+                    <button class="btn" type="submit" style="background-color: #009878; color: white; font-weight: 500; padding: 0.6rem;">Iniciar Sesión</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

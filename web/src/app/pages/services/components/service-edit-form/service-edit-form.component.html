@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h5 class="modal-title">Editar Servicio</h5>
+  <button type="button" class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form.FormGroup" (ngSubmit)="formSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="Nombre del servicio"
+      [ngClass]="{'is-invalid': form.submitted && Form.name.errors, 'is-valid': form.submitted && !Form.name.errors}"/>
+      <div *ngIf="form.submitted && Form.name.errors" class="invalid-feedback">
+        <span *ngIf="Form.name.errors.required">Nombre del servicio es obligatorio.</span>
+        <span *ngIf="Form.name.errors?.['pattern']">El nombre solo puede contener letras y números.</span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-control" formControlName="description" placeholder="Descripcion del servicio"
+      [ngClass]="{'is-invalid': form.submitted && Form.description.errors, 'is-valid': form.submitted && !Form.description.errors}"
+      ></textarea>
+      <div *ngIf="form.submitted && Form.description.errors" class="invalid-feedback">
+        <span *ngIf="Form.description.errors.required">La descripción es obligatoria.</span>
+        <span *ngIf="Form.description.errors?.['pattern']">La descripción solo puede contener letras.</span>
+        <span *ngIf="Form.description.errors?.['minlength']">La descripción debe tener al menos 10 caracteres.</span>
+      </div>
+    </div>
+    <div class="text-end">
+      <button
+        type="button"
+        class="btn btn-light me-2"
+        (click)="bsModalRef.hide()"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="form.submitting"
+      >
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

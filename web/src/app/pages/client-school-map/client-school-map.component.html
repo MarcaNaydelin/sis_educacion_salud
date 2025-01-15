@@ -1,0 +1,21 @@
+<div id="div-filters">
+  <ng-select [items]="selectValue" [multiple]="true" id="select-courses" (change)="onCoursesChange($event)"
+  placeholder="Filtro de cursos"></ng-select>
+  <select name="select-levels" id="select-levels" class="form-control" placeholder="Filtro de horario del colegio"
+    (change)="onShiftChange($event)">
+    <option value="" selected>Filtro de horario del colegio</option>
+    <option *ngFor="let level of selectShift" [value]="level">{{ level }}</option>
+  </select>
+  <select name="select-zones" id="select-zones" class="form-control" placeholder="Filtro de la zona del colegio"
+    (change)="onZoneChange($event)">
+    <option value="" selected>Filtro de la zona colegio</option>
+    <option *ngFor="let zone of selectZones" [value]="zone">{{ zone }}</option>
+  </select>
+  <select name="select-district" id="select-district" class="form-control" placeholder="Filtro del distrito del colegio"
+    (change)="onDistrictChange($event)">
+    <option value="" selected>Filtro del distrito colegio</option>
+    <option *ngFor="let district of selectDistricts" [value]="district">{{ district }}</option>
+  </select>
+</div>
+<div style=" height: 100vh; width: 100%" leaflet [leafletOptions]="options" [leafletLayers]="markers">
+</div>

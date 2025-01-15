@@ -1,0 +1,122 @@
+<app-loader></app-loader>
+
+<div class="modal-header">
+  <h5 class="modal-title">Añadir Colegio</h5>
+  <button type="button" class="btn-close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form.FormGroup" (ngSubmit)="formSubmit()">
+    <div class="row">
+      <!-- Fila 1 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Nombre del colegio"
+          [ngClass]="{'is-invalid': form.submitted && Form.name.errors, 'is-valid': form.submitted && !Form.name.errors}" />
+        <div *ngIf="form.submitted && Form.name.errors" class="invalid-feedback">
+          <span *ngIf="Form.name.errors.required">El nombre es obligatorio.</span>
+          <span *ngIf="Form.name.errors.minlength">El nombre debe tener al menos 3 caracteres.</span>
+          <span *ngIf="Form.name.errors.pattern">El nombre solo puede contener letras y números.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Tipo</label>
+        <select class="form-select" formControlName="type" (change)="onTypeChange($event)"
+          [ngClass]="{'is-invalid': form.submitted && Form.type.errors, 'is-valid': form.submitted && !Form.type.errors}">
+          <option value="">Seleccione el tipo de colegio</option>
+          <option value="Fiscal">Fiscal</option>
+          <option value="Convenio">Convenio</option>
+          <option value="Tecnico">Tecnico</option>
+        </select>
+        <div *ngIf="form.submitted && Form.type.errors" class="invalid-feedback">
+          <span *ngIf="Form.type.errors.required">Debe seleccionar el tipo de colegio.</span>
+        </div>
+      </div>
+      <!-- Fila 2-->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Turno</label>
+        <select class="form-select" formControlName="shift"
+          [ngClass]="{'is-invalid': form.submitted && Form.shift.errors, 'is-valid': form.submitted && !Form.shift.errors}">
+          <option value="">Seleccione un turno</option>
+          <option value="Turno mañana">Turno Mañana</option>
+          <option value="Turno tarde">Turno Tarde</option>
+          <option value="Turno noche">Turno Noche</option>
+        </select>
+        <div *ngIf="form.submitted && Form.shift.errors" class="invalid-feedback">
+          <span *ngIf="Form.shift.errors.required">Debe seleccionar un turno.</span>
+        </div>
+      </div>
+      <!-- Fila 3 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Zona</label>
+        <select class="form-select" formControlName="zone"
+          [ngClass]="{'is-invalid': form.submitted && Form.zone.errors, 'is-valid': form.submitted && !Form.zone.errors}">
+          <option value="">Seleccione una zona</option>
+          <option value="zona norte">Zona Norte</option>
+          <option value="zona sur">Zona Sur</option>
+        </select>
+        <div *ngIf="form.submitted && Form.zone.errors" class="invalid-feedback">
+          <span *ngIf="Form.zone.errors.required">Debe seleccionar una zona.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Distrito</label>
+        <input type="text" class="form-control" formControlName="district" placeholder="Distrito de la zona"
+          [ngClass]="{'is-invalid': form.submitted && Form.district.errors, 'is-valid': form.submitted && !Form.district.errors}" />
+        <div *ngIf="form.submitted && Form.district.errors" class="invalid-feedback">
+          <span *ngIf="Form.district.errors.required">El distrito es obligatorio.</span>
+        </div>
+      </div>
+      <!-- Fila 4 -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control" formControlName="address" placeholder="Dirección del colegio"
+          [ngClass]="{'is-invalid': form.submitted && Form.address.errors, 'is-valid': form.submitted && !Form.address.errors}" />
+        <div *ngIf="form.submitted && Form.address.errors" class="invalid-feedback">
+          <span *ngIf="Form.address.errors.required">La dirección es obligatoria.</span>
+          <span *ngIf="Form.address.errors.pattern">La dirección contiene caracteres no válidos.</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Estado:</label>
+        <div>
+          <ui-switch formControlName="status" color="##343a40" [checked]="true" uncheckedLabel="Inactivo"
+            checkedLabel="Activo" size="small"></ui-switch>
+        </div>
+      </div>
+      <!-- Fila 5 -->
+
+      <div class="col-md-6 mb-3" *ngIf="isTecnicoSelected">
+        <div class="mb-3">
+          <label class="form-label">Cursos</label>
+          <ng-select [items]="selectValue" [multiple]="true" formControlName="courses" bindLabel="name" bindValue="id"
+            [searchable]="false" [clearable]="true" [dropdownPosition]="'below'"
+            placeholder="Seleccione los cursos del colegio" (open)="setTemplateSelectCourses()"
+            [ngClass]="{'is-invalid': form.submitted && Form.courses.errors}"></ng-select>
+          <div *ngIf="form.submitted && Form.courses.errors" class="invalid-feedback d-block">
+            <span *ngIf="Form.courses.errors.required">Debe seleccionar al menos un curso.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Mapa -->
+    <div class="col-12 mt-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Ubicación del colegio</h4>
+          <div class="map-container" style="height: 400px; width: 100%" leaflet [leafletOptions]="options"
+            [leafletLayers]="markers" (leafletClick)="addMarker($event)"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-light me-2" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-success" [disabled]="form.submitting">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
