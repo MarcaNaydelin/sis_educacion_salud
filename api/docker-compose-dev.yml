@@ -1,0 +1,47 @@
+version: "3.7"    #Version
+services:   #Servicios
+  backend-app:
+    build:
+      context: ./docker/ #Directorio
+      dockerfile: Dockerfile #Llama a las dependencias
+    image: salud-educacion-php #Es la ISO
+    container_name: backend-salud-educacion-php #Nombre del contenedor
+    restart: unless-stopped #En caso de un error lo reinicia
+    working_dir: /var/www/ #Directorio
+    volumes:
+      - ./:/var/www #Directorio
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini #
+    networks:
+      - salud-educacion-network #Red que maneja el contenedor
+  backend-nginx:
+    image: nginx:alpine #ISO predeterminado
+    container_name: salud-educacion-nginx #Nombre del Contenedor
+    restart: unless-stopped #En caso de error lo reinicia
+    ports:
+      - 8014:8000 #Puertos que usa el contenedor
+    volumes:
+      - ./:/var/www #Directorio
+      - ./docker/nginx/config/:/etc/nginx/conf.d/ #Configuracion del servicio nginx
+    networks:
+      - salud-educacion-network #Red que maneja el contenedor
+  postgres:
+    image: postgres:16.4 # Versión de PostgreSQL
+    container_name: backend-salud-educacion-postgres # Nombre del contenedor
+    restart: unless-stopped # Reinicia en caso de error
+    environment:
+      POSTGRES_USER: admin # Usuario predeterminado
+      POSTGRES_PASSWORD: admin123 # Contraseña predeterminada
+      POSTGRES_DB: salud_educacion # Nombre de la base de datos predeterminada
+    ports:
+      - 5432:5432 # Puerto del contenedor
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Volumen para persistencia de datos
+    networks:
+      - salud-educacion-network # Red que maneja el contenedor
+networks:
+  salud-educacion-network: #Nombre de la red
+    driver: bridge #Modo de como se utiliza
+volumes:
+  postgres_data: # Volumen para PostgreSQL
+
+
