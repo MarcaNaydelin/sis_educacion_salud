@@ -1,0 +1,15 @@
+version: "3.7" #Version
+services: #Servicios
+  frontend-angular:
+    container_name: frontend-salud-educacion-angular #Nombre del contenedor
+    build:
+      context: . #Agarra todo lo del proyecyo desde la raiz
+      dockerfile: Dockerfile #Llama  al archivo de las dependencias
+    ports:
+      - 4200:4200 #Puertos que se van a utilizar
+    restart: always #En caso de error reinicia
+    networks: #Red que maneja el contenedor
+      - salud-educacionweb-network
+networks:
+  salud-educacionweb-network: #Red
+    driver: bridge
