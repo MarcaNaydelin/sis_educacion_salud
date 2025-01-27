@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --port 4200",
+    "start": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -51,7 +51,6 @@
     "leaflet": "^1.9.4",
     "masonry-layout": "^4.2.2",
     "metismenujs": "^1.4.0",
-    "ng-apexcharts": "^1.7.7",
     "ng-chartist": "^8.1.0",
     "ng-otp-input": "^1.9.2",
     "ng2-charts": "^4.1.1",

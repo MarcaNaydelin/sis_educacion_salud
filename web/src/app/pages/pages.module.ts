@@ -8,7 +8,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { LightboxModule } from 'ngx-lightbox';
@@ -39,7 +38,6 @@ import { SchoolModule } from './schools/school.module';
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     PagesRoutingModule,
-    NgApexchartsModule,
     ReactiveFormsModule,
     DashboardsModule,
     HttpClientModule,
