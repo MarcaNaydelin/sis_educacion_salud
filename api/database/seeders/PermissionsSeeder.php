@@ -103,27 +103,27 @@ class PermissionsSeeder extends Seeder
         $admin_hospital->givePermissionTo(Permission::where('module', '=', 'Servicios')->get());
 
         $user = User::create([
-            'name' => 'John Doe',
-            'email' => 'correo@example.com',
-            'password' => Hash::make('123456'),
+            'name' => 'Admin General',
+            'email' => 'admincentrosgamc@gmail.com',
+            'password' => Hash::make('4dm1ng4mc'),
             'is_active' => true
         ]);
 
         $user->assignRole($superAdmin);
 
         $user2 = User::create([
-            'name' => 'John2 Doe2',
-            'email' => 'correo2@example.com',
-            'password' => Hash::make('123456'),
+            'name' => 'Admin Educación',
+            'email' => 'educaciongamc@gmail.com',
+            'password' => Hash::make('3duc0l3g10s'),
             'is_active' => true
         ]);
 
         $user2->assignRole($admin_educacion);
 
         $user3 = User::create([
-            'name' => 'John3 Doe3',
-            'email' => 'correo3@example.com',
-            'password' => Hash::make('123456'),
+            'name' => 'Admin Hospitales',
+            'email' => 'hospitalesgamc@gmail.com',
+            'password' => Hash::make('h0sp1t4l3s'),
             'is_active' => true
         ]);
 
